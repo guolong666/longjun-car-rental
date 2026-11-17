@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>龙俊租车 LONGJUN AUTO — 奔驰宝马旗舰领衔 · 豪华商务与全系品质座驾展厅</title>
+  <meta name="description" content="龙俊租车官方精品展厅：梅赛德斯-奔驰S级、宝马7系镇店双旗舰豪车领衔，涵盖丰田埃尔法、别克GL8头等舱商务MPV、前沿智能新能源与品质家用代步车。全系实车整备、支持送车上门与礼宾配驾。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 顶部导航栏 -->
+  <header class="site-header" id="top-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand-logo" id="brand-home-link">
+        <div class="brand-emblem">龍</div>
+        <div class="brand-titles">
+          <span class="brand-name">龙俊租车</span>
+          <span class="brand-sub">LONGJUN EXECUTIVE AUTO</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="主导航">
+        <a href="#flagships" class="nav-link" id="nav-flagships">镇店豪车</a>
+        <a href="#fleet" class="nav-link" id="nav-fleet">全系展厅</a>
+        <a href="#scenarios" class="nav-link" id="nav-scenarios">定制场景</a>
+        <a href="#concierge" class="nav-link" id="nav-concierge">礼宾服务</a>
+      </nav>
+
+      <button type="button" class="header-cta" id="header-reserve-btn" data-car="尊享礼宾专属咨询">
+        <span>预约看车 / 档期咨询</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- 首屏视觉区 (Hero Section) -->
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="hero-eyebrow">CROWN JEWELS &amp; FULL FLEET · 龙俊精品汽车租赁</div>
+          <h1 class="hero-title">
+            御见非凡气度<br />
+            <span>奔驰 · 宝马双旗舰</span>领衔全系座驾
+          </h1>
+          <p class="hero-lead">
+            龙俊租车以<strong>梅赛德斯-奔驰 S级</strong>与<strong>宝马 7系行政版</strong>为镇店之宝，同时严选埃尔法/GL8头等舱商务MPV、高阶智能新能源及省心家用代步座驾。全系实车深层整备，透明无套路，为您定制自驾出行、政商接待与盛典婚庆的尊崇体验。
+          </p>
+
+          <div class="hero-actions">
+            <a href="#fleet" class="btn-primary" id="hero-explore-btn">浏览全系现车展厅</a>
+            <button type="button" class="btn-outline" id="hero-concierge-btn" data-car="镇店双旗舰档期咨询">
+              一键咨询专属管家
+            </button>
+          </div>
+
+          <div class="hero-metrics">
+            <div class="metric-item">
+              <span class="metric-val">奔驰 / 宝马</span>
+              <span class="metric-label">镇店双旗舰行政座驾</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-val">4大车系矩阵</span>
+              <span class="metric-label">豪车·商务·新能源·代步</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-val">24H 礼宾响应</span>
+              <span class="metric-label">支持全城送车与正装代驾</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 首屏右侧双旗舰互动焦点橱窗 -->
+        <div class="hero-showcase">
+          <div class="flagship-spotlight" id="hero-spotlight">
+            <img id="spotlight-img" src="assets/mercedes-s-class.jpg" alt="梅赛德斯-奔驰 S级 镇店旗舰豪车" />
+            <div class="spotlight-overlay">
+              <span class="spotlight-tag" id="spotlight-tag">镇店之宝 · 行政头等舱</span>
+              <h2 class="spotlight-title" id="spotlight-title">梅赛德斯-奔驰 S级 (Mercedes-Benz S-Class)</h2>
+              <p class="spotlight-sub" id="spotlight-sub">立标雍容气度 · 后排独立行政座椅 · 贵宾接待与主婚头车首选</p>
+            </div>
+          </div>
+
+          <div class="hero-sub-cards">
+            <div class="mini-flagship active" id="switch-mercedes" data-idx="0">
+              <img src="assets/mercedes-s-class.jpg" alt="奔驰 S级缩略图" />
+              <div class="mini-flagship-info">
+                <h4>梅赛德斯-奔驰 S级</h4>
+                <p>镇店旗舰 · 点击切换预览</p>
+              </div>
+            </div>
+            <div class="mini-flagship" id="switch-bmw" data-idx="1">
+              <img src="assets/bmw-7-series.jpg" alt="宝马 7系缩略图" />
+              <div class="mini-flagship-info">
+                <h4>宝马 7系 尊享行政版</h4>
+                <p>镇店旗舰 · 点击切换预览</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 镇店之宝：奔驰 & 宝马 双旗舰专区 -->
+    <section class="section-block" id="flagships">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-eyebrow">FLAGSHIP SANCTUARY · 镇店双璧</div>
+            <h2 class="section-title">镇店之宝 · 德系双旗舰行政礼宾座驾</h2>
+          </div>
+          <p class="section-desc">
+            每一台旗舰座驾均经过 36 项出车前深度精洗、臭氧杀菌与机务检测，支持自驾提车、机场贵宾厅接机及经验丰富的正装专职司机配驾服务。
+          </p>
+        </div>
+
+        <div class="flagship-duo-grid">
+          <!-- 奔驰 S级 -->
+          <article class="flagship-card">
+            <div class="flagship-media">
+              <img src="assets/mercedes-s-class.jpg" alt="梅赛德斯-奔驰 S级 尊贵展车" loading="lazy" />
+              <span class="flagship-ribbon">CROWN JEWEL · 镇店一号旗舰</span>
+            </div>
+            <div class="flagship-body">
+              <div class="flagship-head">
+                <div>
+                  <h3>梅赛德斯-奔驰 S级</h3>
+                  <span>Mercedes-Benz S-Class Executive Sedan</span>
+                </div>
+                <span class="status-dot">● 现车整备待命</span>
+              </div>
+
+              <div class="flagship-specs">
+                <span class="spec-chip">3.0T 直列六缸 + 48V轻混</span>
+                <span class="spec-chip">柏林之声殿堂级音响</span>
+                <span class="spec-chip">全车双层声学隔音玻璃</span>
+                <span class="spec-chip">后排电动腿托头等舱</span>
+              </div>
+
+              <p class="flagship-copy">
+                三叉星徽立标自带强大气场，车内配备 64 色主动式环境氛围灯与丝绒般细腻的 Nappa 真皮座椅。无论是重要投资人考察、跨国峰会贵宾接送，还是盛大婚礼主婚头车，皆能从容定义排面。
+              </p>
+
+              <div class="flagship-footer">
+                <span class="scene-text"><strong>核心场景：</strong>贵宾外事接待 / 总裁出行 / 盛典主婚头车</span>
+                <button type="button" class="reserve-trigger" data-car="梅赛德斯-奔驰 S级">咨询档期</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 宝马 7系 -->
+          <article class="flagship-card">
+            <div class="flagship-media">
+              <img src="assets/bmw-7-series.jpg" alt="宝马 7系 尊享行政版展车" loading="lazy" />
+              <span class="flagship-ribbon">CROWN JEWEL · 镇店二号旗舰</span>
+            </div>
+            <div class="flagship-body">
+              <div class="flagship-head">
+                <div>
+                  <h3>宝马 7系 尊享行政版</h3>
+                  <span>BMW 7 Series Executive Flagship</span>
+                </div>
+                <span class="status-dot">● 现车整备待命</span>
+              </div>
+
+              <div class="flagship-specs">
+                <span class="spec-chip">3.0T 涡轮增压 + 8AT</span>
+                <span class="spec-chip">魔毯智能空气悬架</span>
+                <span class="spec-chip">施华洛世奇水晶氛围组件</span>
+                <span class="spec-chip">全景星轨天幕</span>
+              </div>
+
+              <p class="flagship-copy">
+                恢弘大气的前脸设计与璀璨水晶日间行车灯相得益彰，兼顾巅峰驾驶质感与越级后排舒享空间。魔毯空气悬架从容过滤每一处路面颠簸，深受年轻企业家与时代精英青睐。
+              </p>
+
+              <div class="flagship-footer">
+                <span class="scene-text"><strong>核心场景：</strong>高管商务考察 / 名流晚宴 / 高端自驾体验</span>
+                <button type="button" class="reserve-trigger" data-car="宝马 7系 尊享行政版">咨询档期</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 全系车型交互式展厅 (Fleet Catalog) -->
+    <section class="fleet-section" id="fleet">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-eyebrow">COMPLETE FLEET PORTFOLIO · 全系座驾一览</div>
+            <h2 class="section-title">全系严选车库 · 满足多元出行所需</h2>
+          </div>
+          <p class="section-desc">
+            不标虚价、一车一况透明沟通。点击下方分类标签，快速筛选适合您本次行程的理想车型。
+          </p>
+        </div>
+
+        <!-- 分类筛选栏 -->
+        <div class="filter-bar" id="fleet-filter-bar" role="tablist" aria-label="车型分类筛选">
+          <button type="button" class="filter-btn active" data-category="all" id="filter-all">全部车系 (8)</button>
+          <button type="button" class="filter-btn" data-category="luxury" id="filter-luxury">镇店豪车 · 奔驰/宝马 (2)</button>
+          <button type="button" class="filter-btn" data-category="business" id="filter-business">头等舱商务 MPV (2)</button>
+          <button type="button" class="filter-btn" data-category="ev" id="filter-ev">先锋智能新能源 (2)</button>
+          <button type="button" class="filter-btn" data-category="daily" id="filter-daily">品质家用代步 (2)</button>
+        </div>
+
+        <!-- 车型卡片动态容器 -->
+        <div class="fleet-grid" id="fleet-cards-container"></div>
+      </div>
+    </section>
+
+    <!-- 四大定制用车场景 -->
+    <section class="section-block" id="scenarios">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-eyebrow">BESPOKE SCENARIOS · 场景方案</div>
+            <h2 class="section-title">四大专属出行方案 · 全流程省心护航</h2>
+          </div>
+          <p class="section-desc">
+            无论您需要一天短租代步、跨城商务包车，还是企业长期定制用车，龙俊车务团队均提供一对一管家跟进。
+          </p>
+        </div>
+
+        <div class="scenarios-grid">
+          <div class="scenario-card">
+            <span class="scenario-num">SCENARIO 01</span>
+            <h3>贵宾接待与政商礼宾</h3>
+            <p>奔驰S级、宝马7系、丰田埃尔法与GL8艾维亚随时待命，支持配备熟谙商务礼仪的专职司机，机场/高铁站准点迎宾。</p>
+          </div>
+          <div class="scenario-card">
+            <span class="scenario-num">SCENARIO 02</span>
+            <h3>婚庆头车与盛典车队</h3>
+            <p>提供双旗舰头车及统一色系豪华迎亲车队定制，车辆提前精洗抛光，确保重要时刻气场全开、分秒不误。</p>
+          </div>
+          <div class="scenario-card">
+            <span class="scenario-num">SCENARIO 03</span>
+            <h3>家庭出游与先锋自驾</h3>
+            <p>六座智能增程SUV、纯电轿跑与全景大空间SUV，满电满油干净交付，配备车载冷暖箱与高阶智驾，让全家旅途轻松惬意。</p>
+          </div>
+          <div class="scenario-card">
+            <span class="scenario-num">SCENARIO 04</span>
+            <h3>日常通勤与企业长租</h3>
+            <p>凯美瑞双擎等高口碑经济舒适家轿，手续极简、随取随还；支持企业月租/年租灵活方案，含全险维保与替换车保障。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 底部礼宾预约横幅 -->
+    <section class="section-block" id="concierge">
+      <div class="container">
+        <div class="concierge-banner">
+          <div class="concierge-text">
+            <h2>准备好开启您的尊崇出行了吗？</h2>
+            <p>
+              龙俊租车坚持「实车实拍 · 车况透明 · 全城送车上门」。由于镇店豪车与热门商务MPV档期较为紧凑，建议您提前预约锁定心仪座驾。
+            </p>
+          </div>
+          <div class="concierge-actions">
+            <button type="button" class="btn-primary" id="footer-reserve-btn" data-car="全系车型档期与方案咨询">
+              立即登记用车需求
+            </button>
+            <a href="#fleet" class="btn-outline" id="footer-back-fleet">重温全系车型</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 龙俊租车 (LONGJUN EXECUTIVE AUTO) · 奔驰宝马旗舰领衔 · 豪华商务与全系品质汽车租赁展厅</p>
+    </div>
+  </footer>
+
+  <!-- 手机端底部常驻快捷咨询栏 -->
+  <div class="mobile-bottom-bar" id="mobile-sticky-bar">
+    <div class="mobile-bar-info">
+      <strong>龙俊租车 · 24H专属管家</strong>
+      <span>奔驰/宝马旗舰 · 商务MPV · 家用全系现车</span>
+    </div>
+    <button type="button" class="mobile-bar-btn" id="mobile-reserve-btn" data-car="手机端快捷档期咨询">
+      预约 / 查档期
+    </button>
+  </div>
+
+  <!-- 预约看车/查档期互动弹窗 -->
+  <div class="modal-backdrop" id="reserve-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-text">
+    <div class="modal-box">
+      <button type="button" class="modal-close" id="modal-close-btn" aria-label="关闭窗口">×</button>
+      <h3 class="modal-title" id="modal-title-text">龙俊租车 · 专属礼宾档期预约</h3>
+      <p class="modal-subtitle" id="modal-selected-car">意向座驾：梅赛德斯-奔驰 S级</p>
+
+      <form id="reserve-form">
+        <div class="form-group">
+          <label for="customer-name">您的称呼</label>
+          <input type="text" id="customer-name" class="form-control" placeholder="例如：张先生 / 李女士" required />
+        </div>
+        <div class="form-group">
+          <label for="customer-phone">联系电话 / 微信号</label>
+          <input type="tel" id="customer-phone" class="form-control" placeholder="请输入手机号以便车务管家联系您" required />
+        </div>
+        <div class="form-group">
+          <label for="service-type">用车方式</label>
+          <select id="service-type" class="form-control">
+            <option value="尊享自驾 (支持送车上门)">尊享自驾 (支持送车上门)</option>
+            <option value="礼宾配驾 (配专职正装司机)">礼宾配驾 (配专职正装司机)</option>
+            <option value="婚庆头车 / 车队定制">婚庆头车 / 车队定制</option>
+            <option value="企业长租 / 商务会务包车">企业长租 / 商务会务包车</option>
+          </select>
+        </div>
+        <button type="submit" class="form-submit" id="submit-reserve-btn">提交预约 · 获取专属方案</button>
+        <div class="toast-msg" id="reserve-toast">
+          ✓ 您的预约需求已生成！龙俊专属车务管家将第一时间为您核实实车档期并联系您。
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
