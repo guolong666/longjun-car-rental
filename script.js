@@ -1,219 +1,466 @@
 /**
- * 龙俊租车 LONGJUN EXECUTIVE AUTO — 展厅交互逻辑
- * 包含：首屏双旗舰焦点切换、全系8款车型分类筛选渲染、档期咨询弹窗交互
+ * 龙俊租车 LONGJUN EXECUTIVE AUTO — 奢华视觉版动效与交互引擎
  */
 
-const FLAGSHIP_SPOTLIGHTS = [
-  {
-    img: "assets/mercedes-s-class.jpg",
-    tag: "镇店之宝 · 行政头等舱",
-    title: "梅赛德斯-奔驰 S级 (Mercedes-Benz S-Class)",
-    sub: "立标雍容气度 · 后排独立行政座椅 · 贵宾接待与主婚头车首选"
-  },
-  {
-    img: "assets/bmw-7-series.jpg",
-    tag: "镇店之宝 · 时代先锋旗舰",
-    title: "宝马 7系 尊享行政版 (BMW 7 Series)",
-    sub: "璀璨水晶日行灯 · 魔毯空气悬架 · 兼顾巅峰驾控与奢适后排空间"
-  }
+const GALLERY_SHOTS = [
+  { img: "assets/hero-dual-flagship.jpg", title: "奔驰 S级 · 宝马 7系 双旗舰", sub: "五星酒店迎宾夜景实拍" },
+  { img: "assets/mercedes-s-class.jpg", title: "梅赛德斯-奔驰 S级", sub: "黑金展厅 · 行政立标" },
+  { img: "assets/mercedes-s-interior.jpg", title: "奔驰 S级 · 行政头等舱", sub: "菱格纹Nappa真皮 · 柏林之声" },
+  { img: "assets/mercedes-s-detail.jpg", title: "奔驰 S级 · 三叉星徽", sub: "几何多光束数字大灯细节" },
+  { img: "assets/bmw-7-series.jpg", title: "宝马 7系 尊享行政版", sub: "璀璨水晶日行灯 · 气势前脸" },
+  { img: "assets/bmw-7-interior.jpg", title: "宝马 7系 · 水晶交互座舱", sub: "环抱式光带 · 悬浮曲面屏" },
+  { img: "assets/toyota-alphard.jpg", title: "丰田 埃尔法 双擎尊贵版", sub: "明星商务接待头等舱" },
+  { img: "assets/alphard-interior.jpg", title: "埃尔法 · 航空奥斯曼座椅", sub: "电动侧滑门 · 独立私享空间" },
+  { img: "assets/buick-gl8.jpg", title: "别克 GL8 艾维亚尊礼版", sub: "7座政商接待黄金标杆" },
+  { img: "assets/ev-smart-sedan.jpg", title: "智享纯电超跑轿跑", sub: "800V超充 · 无框流线美学" },
+  { img: "assets/family-ev-suv.jpg", title: "豪华六座智能增程 SUV", sub: "车载冷暖箱 · 家庭移动豪宅" },
+  { img: "assets/daily-comfort-sedan.jpg", title: "丰田 凯美瑞 智驾旗舰版", sub: "双擎低耗 · 都市舒享代步" },
+  { img: "assets/urban-compact-suv.jpg", title: "大众 途观L 越享全景 SUV", sub: "德系全景天窗 · 宽适远游" }
 ];
 
-const FLEET_DATA = [
+const FLEET_CARS = [
   {
     id: "mercedes-s",
     name: "梅赛德斯-奔驰 S级",
-    en: "Mercedes-Benz S-Class",
     category: "luxury",
-    badge: "镇店旗舰豪车",
-    image: "assets/mercedes-s-class.jpg",
-    specs: "5座行政舱 · 3.0T+48V · 柏林之声",
-    scene: "贵宾接待 / 总裁出行 / 主婚头车",
-    desc: "三叉星徽立标气场，殿堂级后排头等舱座椅与全车双层声学玻璃，支持尊享自驾或正装司机配驾。"
+    badge: "镇店旗舰",
+    specs: "5座行政 · 3.0T + 48V · 柏林之声",
+    img: "assets/mercedes-s-class.jpg",
+    interiorImg: "assets/mercedes-s-interior.jpg",
+    photos: [
+      { img: "assets/mercedes-s-class.jpg", caption: "外饰全貌 · 沉稳立标气场" },
+      { img: "assets/mercedes-s-interior.jpg", caption: "后排行政座舱 · 菱格纹头等舱" },
+      { img: "assets/mercedes-s-detail.jpg", caption: "星徽前脸 · 数字大灯特写" }
+    ]
   },
   {
     id: "bmw-7",
     name: "宝马 7系 尊享行政版",
-    en: "BMW 7 Series Executive",
     category: "luxury",
-    badge: "镇店旗舰豪车",
-    image: "assets/bmw-7-series.jpg",
-    specs: "5座豪华舱 · 3.0T涡轮 · 魔毯空悬",
-    scene: "高管考察 / 名流晚宴 / 尊贵礼宾",
-    desc: "璀璨水晶日间行车灯与恢弘前脸设计，兼具操控质感与奢适后排腿部空间，尽显非凡格调。"
+    badge: "镇店旗舰",
+    specs: "5座豪华 · 3.0T · 魔毯空气悬架",
+    img: "assets/bmw-7-series.jpg",
+    interiorImg: "assets/bmw-7-interior.jpg",
+    photos: [
+      { img: "assets/bmw-7-series.jpg", caption: "外饰全貌 · 璀璨水晶前脸" },
+      { img: "assets/bmw-7-interior.jpg", caption: "水晶交互座舱 · 环抱式氛围灯" },
+      { img: "assets/hero-dual-flagship.jpg", caption: "双旗舰夜景 · 酒店礼宾出车" }
+    ]
   },
   {
-    id: "toyota-alphard",
+    id: "alphard",
     name: "丰田 埃尔法 双擎尊贵版",
-    en: "Toyota Alphard Executive MPV",
     category: "business",
-    badge: "头等舱商务MPV",
-    image: "assets/toyota-alphard.jpg",
+    badge: "头等舱 MPV",
     specs: "7座航空椅 · 2.5L混动 · 电动滑门",
-    scene: "明星贵宾接待 / 集团考察 / VIP接机",
-    desc: "二排独立 Ottoman 航空通风按摩座椅与隐私遮阳帘，让每一段商务差旅化作移动私人休息室。"
+    img: "assets/toyota-alphard.jpg",
+    interiorImg: "assets/alphard-interior.jpg",
+    photos: [
+      { img: "assets/toyota-alphard.jpg", caption: "外饰全貌 · 尊贵珍珠白" },
+      { img: "assets/alphard-interior.jpg", caption: "二排奥斯曼航空座椅实拍" }
+    ]
   },
   {
-    id: "buick-gl8",
+    id: "gl8",
     name: "别克 GL8 艾维亚尊礼版",
-    en: "Buick GL8 Avenir MPV",
     category: "business",
-    badge: "政商黄金标杆",
-    image: "assets/buick-gl8.jpg",
-    specs: "7座宽适舱 · 2.0T+9AT · BOSE音响",
-    scene: "会务保障 / 团队差旅 / 全家远游",
-    desc: "国内政商接待出场率标杆，满载 7 人仍享充裕行李装载空间，底盘滤震厚重稳健。"
+    badge: "政商优选",
+    specs: "7座宽适 · 2.0T + 9AT · BOSE音响",
+    img: "assets/buick-gl8.jpg",
+    interiorImg: null,
+    photos: [
+      { img: "assets/buick-gl8.jpg", caption: "外饰全貌 · 艾维亚旗舰版" }
+    ]
   },
   {
     id: "ev-coupe",
     name: "智享纯电超跑轿跑",
-    en: "Smart Electric Coupe",
     category: "ev",
-    badge: "先锋智能纯电",
-    image: "assets/ev-smart-sedan.jpg",
-    specs: "5座智驾舱 · 800V超充 · 750km+续航",
-    scene: "都市潮流出行 / 科技自驾 / 情侣漫游",
-    desc: "无框车门与动感溜背轿跑美学，激光雷达高阶智驾辅助，丝滑静谧电驱彻底告别里程焦虑。"
+    badge: "智能纯电",
+    specs: "5座智驾 · 800V超充 · 750km+续航",
+    img: "assets/ev-smart-sedan.jpg",
+    interiorImg: null,
+    photos: [
+      { img: "assets/ev-smart-sedan.jpg", caption: "流线轿跑 · 激光雷达智驾" }
+    ]
   },
   {
     id: "ev-suv",
     name: "豪华六座智能增程 SUV",
-    en: "Full-Size Smart EREV SUV",
     category: "ev",
-    badge: "家庭移动头等舱",
-    image: "assets/family-ev-suv.jpg",
-    specs: "6座独立椅 · 可油可电 · 车载冷暖箱",
-    scene: "全家自驾远行 / 露营度假 / 跨省长途",
-    desc: "配备车载冷暖冰箱、后排娱乐大屏与 Nappa 真皮按摩座椅，综合续航超 1300km，三排皆舒适。"
+    badge: "移动豪宅",
+    specs: "6座独立 · 可油可电 · 车载冰箱",
+    img: "assets/family-ev-suv.jpg",
+    interiorImg: null,
+    photos: [
+      { img: "assets/family-ev-suv.jpg", caption: "墨玉绿全尺寸六座 SUV" }
+    ]
   },
   {
-    id: "camry-hybrid",
+    id: "camry",
     name: "丰田 凯美瑞 智驾旗舰版",
-    en: "Toyota Camry Hybrid Sedan",
     category: "daily",
-    badge: "品质家用轿车",
-    image: "assets/daily-comfort-sedan.jpg",
-    specs: "5座舒适轿 · 双擎超低油耗 · CarPlay",
-    scene: "日常通勤代步 / 个人差旅 / 走亲访友",
-    desc: "口碑卓越的中高级舒适家轿，转向轻盈丝滑、百公里油耗极低，车况整洁如新、上手零门槛。"
+    badge: "品质家轿",
+    specs: "5座舒适 · 双擎超低油耗 · CarPlay",
+    img: "assets/daily-comfort-sedan.jpg",
+    interiorImg: null,
+    photos: [
+      { img: "assets/daily-comfort-sedan.jpg", caption: "都市轻盈代步 · 整备如新" }
+    ]
   },
   {
-    id: "tiguan-suv",
+    id: "tiguan",
     name: "大众 途观L 越享全景 SUV",
-    en: "VW Tiguan L Panorama SUV",
     category: "daily",
-    badge: "宽适家用SUV",
-    image: "assets/urban-compact-suv.jpg",
-    specs: "5座大空间 · 2.0T动力 · 全景大天窗",
-    scene: "周末周边自驾 / 接送亲友 / 高速巡航",
-    desc: "扎实稳健的德系品质 SUV，开阔驾驶视野与超大后备箱装载能力，市区通勤与高速巡航皆安心。"
+    badge: "德系 SUV",
+    specs: "5座大空间 · 2.0T · 全景大天窗",
+    img: "assets/urban-compact-suv.jpg",
+    interiorImg: null,
+    photos: [
+      { img: "assets/urban-compact-suv.jpg", caption: "大视野全景天窗 SUV" }
+    ]
   }
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. 首屏双旗舰焦点切换
-  const spotlightImg = document.getElementById("spotlight-img");
-  const spotlightTag = document.getElementById("spotlight-tag");
-  const spotlightTitle = document.getElementById("spotlight-title");
-  const spotlightSub = document.getElementById("spotlight-sub");
-  const miniCards = document.querySelectorAll(".mini-flagship");
+  // 1. 奢华开场幕帘快速退场
+  const curtain = document.getElementById("intro-curtain");
+  setTimeout(() => {
+    curtain.classList.add("is-done");
+  }, 650);
 
-  miniCards.forEach((card) => {
-    card.addEventListener("click", () => {
-      const idx = Number(card.getAttribute("data-idx")) || 0;
-      const item = FLAGSHIP_SPOTLIGHTS[idx];
-      if (!item) return;
+  // 2. 顶部进度金线 + 导航玻璃滚动感
+  const progressBar = document.getElementById("scroll-progress");
+  const header = document.getElementById("site-header");
 
-      miniCards.forEach((c) => c.classList.remove("active"));
-      card.classList.add("active");
+  function onScrollUpdate() {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? Math.min(100, (scrollTop / docHeight) * 100) : 0;
+    progressBar.style.width = `${pct}%`;
 
-      spotlightImg.src = item.img;
-      spotlightImg.alt = item.title;
-      spotlightTag.textContent = item.tag;
-      spotlightTitle.textContent = item.title;
-      spotlightSub.textContent = item.sub;
+    if (scrollTop > 40) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+  }
+  window.addEventListener("scroll", onScrollUpdate, { passive: true });
+  onScrollUpdate();
+
+  // 3. 首屏电影级轮播
+  const slides = document.querySelectorAll(".hero-slide");
+  const thumbBtns = document.querySelectorAll(".hero-thumb-btn");
+  let currentSlide = 0;
+  let heroTimer = null;
+
+  function goToSlide(idx) {
+    slides.forEach((s, i) => s.classList.toggle("active", i === idx));
+    thumbBtns.forEach((b, i) => b.classList.toggle("active", i === idx));
+    currentSlide = idx;
+  }
+
+  function startHeroLoop() {
+    clearInterval(heroTimer);
+    heroTimer = setInterval(() => {
+      goToSlide((currentSlide + 1) % slides.length);
+    }, 6000);
+  }
+
+  thumbBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const idx = Number(btn.getAttribute("data-slide")) || 0;
+      goToSlide(idx);
+      startHeroLoop();
     });
   });
+  startHeroLoop();
 
-  // 2. 渲染全系车型卡片
-  const fleetContainer = document.getElementById("fleet-cards-container");
-  const filterButtons = document.querySelectorAll(".filter-btn");
+  // 4. 滚动渐显观察器 (IntersectionObserver)
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -30px 0px" }
+  );
+
+  document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+
+  // 5. 双旗舰多视角切换 (外饰 / 座舱 / 细节)
+  function bindStageSwitcher(targetKey, imgId, carTitle) {
+    const mainImg = document.getElementById(imgId);
+    const stageVisual = mainImg.closest(".stage-visual");
+    const pills = document.querySelectorAll(`.stage-angle-pills[data-target="${targetKey}"] .angle-pill`);
+    const thumbs = document.querySelectorAll(`.stage-mini-strip[data-target="${targetKey}"] .stage-mini-thumb`);
+
+    function switchAngle(imgSrc, caption) {
+      mainImg.style.opacity = "0.25";
+      setTimeout(() => {
+        mainImg.src = imgSrc;
+        mainImg.style.opacity = "1";
+      }, 150);
+
+      stageVisual.setAttribute("data-lightbox-img", imgSrc);
+      stageVisual.setAttribute("data-lightbox-title", carTitle);
+      stageVisual.setAttribute("data-lightbox-sub", caption);
+
+      pills.forEach((p) => p.classList.toggle("active", p.getAttribute("data-img") === imgSrc));
+      thumbs.forEach((t) => t.classList.toggle("active", t.getAttribute("data-img") === imgSrc));
+    }
+
+    pills.forEach((p) => {
+      p.addEventListener("click", (e) => {
+        e.stopPropagation();
+        switchAngle(p.getAttribute("data-img"), p.getAttribute("data-caption"));
+      });
+    });
+
+    thumbs.forEach((t) => {
+      t.addEventListener("click", () => {
+        switchAngle(t.getAttribute("data-img"), t.getAttribute("data-caption"));
+      });
+    });
+  }
+
+  bindStageSwitcher("mercedes", "stage-img-mercedes", "梅赛德斯-奔驰 S级");
+  bindStageSwitcher("bmw", "stage-img-bmw", "宝马 7系 尊享行政版");
+
+  // 6. 双轨无限流光摄影长廊
+  const row1 = document.getElementById("marquee-row-1");
+  const row2 = document.getElementById("marquee-row-2");
+
+  const firstHalf = GALLERY_SHOTS.slice(0, 7);
+  const secondHalf = GALLERY_SHOTS.slice(6);
+
+  function buildMarqueeItems(list) {
+    // Duplicate twice for seamless CSS infinite marquee
+    const doubled = [...list, ...list];
+    return doubled
+      .map(
+        (item) => `
+      <div class="gallery-shot" data-gallery-img="${item.img}" data-gallery-title="${item.title}" data-gallery-sub="${item.sub}">
+        <img src="${item.img}" alt="${item.title}" loading="lazy" />
+        <div class="gallery-shot-caption">
+          <strong>${item.title}</strong>
+          <span>${item.sub}</span>
+        </div>
+      </div>
+    `
+      )
+      .join("");
+  }
+
+  row1.innerHTML = buildMarqueeItems(firstHalf);
+  row2.innerHTML = buildMarqueeItems(secondHalf);
+
+  // 7. 渲染全系车型图库网格 (支持内饰切换 + 3D 悬停微倾动效)
+  const fleetGrid = document.getElementById("fleet-visual-grid");
+  const filterTabs = document.querySelectorAll(".filter-tab");
 
   function renderFleet(category) {
-    const list =
+    const items =
       category === "all"
-        ? FLEET_DATA
-        : FLEET_DATA.filter((car) => car.category === category);
+        ? FLEET_CARS
+        : FLEET_CARS.filter((c) => c.category === category);
 
-    fleetContainer.innerHTML = list
+    fleetGrid.innerHTML = items
       .map(
-        (car) => `
-      <article class="vehicle-card ${car.category === "luxury" ? "is-luxury" : ""}">
-        <div class="vehicle-img-wrap">
-          <img src="${car.image}" alt="${car.name}" loading="lazy" />
-          <span class="vehicle-badge">${car.badge}</span>
+        (car, idx) => `
+      <article class="car-visual-card reveal is-visible" style="transition-delay: ${idx * 0.04}s" data-car-id="${car.id}">
+        <div class="car-photo-stage ${car.interiorImg ? "has-interior" : ""}" data-open-car="${car.id}">
+          <img src="${car.img}" alt="${car.name}" class="img-exterior" loading="lazy" />
+          ${car.interiorImg ? `<img src="${car.interiorImg}" alt="${car.name} 内饰座舱" class="img-interior" loading="lazy" />` : ""}
+          <span class="car-badge-float">${car.badge}</span>
+          ${car.interiorImg ? `<button type="button" class="car-angle-switch" data-toggle-interior>外饰 / 内饰</button>` : ""}
         </div>
-        <div class="vehicle-content">
-          <div class="vehicle-title-row">
+        <div class="car-meta-bar">
+          <div class="car-meta-text">
             <h3>${car.name}</h3>
-            <p>${car.en}</p>
+            <p>${car.specs}</p>
           </div>
-          <div class="vehicle-specs-bar">${car.specs}</div>
-          <p class="vehicle-desc">${car.desc}</p>
-          <div class="vehicle-bottom">
-            <span class="vehicle-scene" title="${car.scene}">${car.scene}</span>
-            <button type="button" class="reserve-trigger" data-car="${car.name}">预约档期</button>
+          <div class="car-meta-actions">
+            <button type="button" class="btn-card-view" data-open-car="${car.id}">大图</button>
+            <button type="button" class="btn-card-book" data-car="${car.name}">预约</button>
           </div>
         </div>
       </article>
     `
       )
       .join("");
+
+    // Bind subtle 3D tilt on desktop pointers
+    if (window.matchMedia("(pointer: fine)").matches) {
+      fleetGrid.querySelectorAll(".car-visual-card").forEach((card) => {
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          card.style.transform = `perspective(1000px) rotateX(${(-y * 3.5).toFixed(2)}deg) rotateY(${(x * 3.5).toFixed(2)}deg) translateY(-4px)`;
+        });
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = "";
+        });
+      });
+    }
   }
 
-  filterButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      filterButtons.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      const category = btn.getAttribute("data-category") || "all";
-      renderFleet(category);
+  filterTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      filterTabs.forEach((t) => t.classList.remove("active"));
+      tab.classList.add("active");
+      renderFleet(tab.getAttribute("data-category") || "all");
     });
   });
-
   renderFleet("all");
 
-  // 3. 预约咨询弹窗交互
+  // 8. 高清大图灯箱 Lightbox (支持上一张 / 下一张 / 键盘操作 / 一键转预约)
+  const lightbox = document.getElementById("lightbox-modal");
+  const lbImg = document.getElementById("lightbox-img");
+  const lbTitle = document.getElementById("lightbox-title");
+  const lbCaption = document.getElementById("lightbox-caption");
+  const lbPrev = document.getElementById("lightbox-prev");
+  const lbNext = document.getElementById("lightbox-next");
+  const lbClose = document.getElementById("lightbox-close");
+  const lbBook = document.getElementById("lightbox-book-btn");
+
+  let lbPlaylist = [];
+  let lbIndex = 0;
+  let lbCarName = "";
+
+  function showLightboxItem(idx) {
+    if (!lbPlaylist.length) return;
+    lbIndex = (idx + lbPlaylist.length) % lbPlaylist.length;
+    const item = lbPlaylist[lbIndex];
+    lbImg.src = item.img;
+    lbTitle.textContent = item.title || lbCarName;
+    lbCaption.textContent = item.caption || "";
+    lbPrev.style.display = lbPlaylist.length > 1 ? "flex" : "none";
+    lbNext.style.display = lbPlaylist.length > 1 ? "flex" : "none";
+  }
+
+  function openLightbox(playlist, startIndex, carName) {
+    lbPlaylist = playlist;
+    lbCarName = carName;
+    showLightboxItem(startIndex);
+    lightbox.classList.add("open");
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove("open");
+  }
+
+  lbPrev.addEventListener("click", () => showLightboxItem(lbIndex - 1));
+  lbNext.addEventListener("click", () => showLightboxItem(lbIndex + 1));
+  lbClose.addEventListener("click", closeLightbox);
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (!lightbox.classList.contains("open")) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") showLightboxItem(lbIndex - 1);
+    if (e.key === "ArrowRight") showLightboxItem(lbIndex + 1);
+  });
+
+  // 9. 预约弹窗逻辑
   const modal = document.getElementById("reserve-modal");
   const modalCloseBtn = document.getElementById("modal-close-btn");
   const modalSelectedCar = document.getElementById("modal-selected-car");
   const reserveForm = document.getElementById("reserve-form");
   const reserveToast = document.getElementById("reserve-toast");
 
-  function openModal(carName) {
-    modalSelectedCar.textContent = `意向座驾 / 服务：${carName || "全系座驾档期咨询"}`;
+  function openBookingModal(carName) {
+    modalSelectedCar.textContent = `意向座驾 / 方案：${carName || "全系座驾咨询"}`;
     reserveToast.style.display = "none";
     modal.classList.add("open");
   }
 
-  function closeModal() {
+  function closeBookingModal() {
     modal.classList.remove("open");
   }
 
-  document.body.addEventListener("click", (e) => {
-    const trigger = e.target.closest("[data-car]");
-    if (trigger) {
-      const carName = trigger.getAttribute("data-car");
-      openModal(carName);
-    }
+  lbBook.addEventListener("click", () => {
+    closeLightbox();
+    openBookingModal(lbCarName);
   });
 
-  modalCloseBtn.addEventListener("click", closeModal);
+  modalCloseBtn.addEventListener("click", closeBookingModal);
   modal.addEventListener("click", (e) => {
-    if (e.target === modal) closeModal();
+    if (e.target === modal) closeBookingModal();
   });
 
   reserveForm.addEventListener("submit", (e) => {
     e.preventDefault();
     reserveToast.style.display = "block";
     reserveForm.reset();
+  });
+
+  // 全局点击事件委托 (图片切换 / 大图灯箱 / 预约触发)
+  document.body.addEventListener("click", (e) => {
+    // A. 手机端/卡片点击切换外饰与内饰
+    const toggleBtn = e.target.closest("[data-toggle-interior]");
+    if (toggleBtn) {
+      e.stopPropagation();
+      const stage = toggleBtn.closest(".car-photo-stage");
+      stage.classList.toggle("show-interior");
+      return;
+    }
+
+    // B. 点击车型卡或「大图」按钮打开该车专属多图灯箱
+    const carOpenTrigger = e.target.closest("[data-open-car]");
+    if (carOpenTrigger) {
+      const carId = carOpenTrigger.getAttribute("data-open-car");
+      const car = FLEET_CARS.find((c) => c.id === carId);
+      if (car) {
+        const playlist = car.photos.map((p) => ({
+          img: p.img,
+          title: car.name,
+          caption: `${p.caption} · ${car.specs}`
+        }));
+        openLightbox(playlist, 0, car.name);
+      }
+      return;
+    }
+
+    // C. 点击双旗舰大图打开灯箱
+    const stageVisual = e.target.closest(".stage-visual");
+    if (stageVisual) {
+      const title = stageVisual.getAttribute("data-lightbox-title");
+      const currentImg = stageVisual.getAttribute("data-lightbox-img");
+      const allFlagshipPhotos = GALLERY_SHOTS.slice(0, 6).map((g) => ({
+        img: g.img,
+        title: g.title,
+        caption: g.sub
+      }));
+      const startIdx = Math.max(0, allFlagshipPhotos.findIndex((p) => p.img === currentImg));
+      openLightbox(allFlagshipPhotos, startIdx, title);
+      return;
+    }
+
+    // D. 点击流光画廊任意照片打开全画廊灯箱
+    const shotEl = e.target.closest(".gallery-shot");
+    if (shotEl) {
+      const clickedImg = shotEl.getAttribute("data-gallery-img");
+      const allShots = GALLERY_SHOTS.map((g) => ({
+        img: g.img,
+        title: g.title,
+        caption: g.sub
+      }));
+      const startIdx = Math.max(0, allShots.findIndex((p) => p.img === clickedImg));
+      openLightbox(allShots, startIdx, shotEl.getAttribute("data-gallery-title"));
+      return;
+    }
+
+    // E. 预约触发按钮
+    const reserveTrigger = e.target.closest("[data-car]");
+    if (reserveTrigger) {
+      openBookingModal(reserveTrigger.getAttribute("data-car"));
+    }
   });
 });
